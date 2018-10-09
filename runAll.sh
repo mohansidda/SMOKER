@@ -15,7 +15,7 @@ if [ "$answer" = "yes" ]; then
 fi
 
 	#install resources
-	oc apply -f /home/sknot/RH/strimzi/examples/install/cluster-operator
+	oc apply -f /home/sknot/RH/strimzi/install/cluster-operator
 
 	#deploy cluster
 	oc apply -f kafka-ephemeral.yaml
