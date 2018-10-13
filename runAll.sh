@@ -16,22 +16,25 @@ fi
 
 	#install resources
 	oc apply -f /home/sknot/RH/strimzi/install/cluster-operator
+	sleep 10
 
 	#deploy cluster
 	oc apply -f kafka-ephemeral.yaml
+	sleep 90 # we have to wait to ready kafka
 
 	#create users
-	oc apply -f expoDemo1/kafka-user.yaml
-	oc apply -f expoDemo2/kafka-user.yaml
+	oc apply -f expoDemoUser1/kafka-user.yaml
+	oc apply -f expoDemoUser2/kafka-user.yaml
 
+	sleep 30
 if [ "$answer" = "yes" ]; then
 	#wait for kafka cluster boot up
 	sleep 120
 fi
 #run clients
-cd expoDemo1
+cd expoDemoUser1
 . getAuthAndStart.sh &
 cd ..
-cd expoDemo2
+cd expoDemoUser2
 . getAuthAndStart.sh &
 cd ..

@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+import org.apache.kafka.common.requests.AlterReplicaLogDirsRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -36,6 +38,7 @@ public class SMOKER {
     boolean me = false;
     boolean you = false;
     private static final Logger log = LogManager.getLogger(SMOKER.class);
+    private static ArrayList<String> functions = new ArrayList();
 
 
 
@@ -52,6 +55,8 @@ public class SMOKER {
                         "      ░         ░       ░ ░  ░  ░      ░  ░   ░    "
         );
         log.info("Strimzi - Messaging - Openshift - Kafka - Exposing - Redhat");
+        functions.add("!temperature");
+        functions.add("!time");
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -124,7 +129,7 @@ public class SMOKER {
                 producer.sendMessage(msg);
             } else {
                 String text = textField1.getText();
-                if (text.length() > 0 && !text.equals("!time") && !text.equals("!temperature")) {
+                if (text.length() > 0 && !functions.contains(text)) {
                     you = false;
                     if (!me) {
                         textArea1.append(producer.config.getSender() + ":\n");
