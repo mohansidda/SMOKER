@@ -20,6 +20,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -55,8 +56,16 @@ public class SMOKER {
                         "      ░         ░       ░ ░  ░  ░      ░  ░   ░    "
         );
         log.info("Strimzi - Messaging - Openshift - Kafka - Exposing - Redhat");
+
+        // special functions
         functions.add("!temperature");
         functions.add("!time");
+
+        // auto scroll down
+        DefaultCaret caret = (DefaultCaret)textArea1.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
+        // click on the button
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -64,6 +73,7 @@ public class SMOKER {
             }
         });
 
+        // consumer thread
         Thread consumerThread = new Thread() {
             @Override
             public void run() {
@@ -99,6 +109,8 @@ public class SMOKER {
             }
         };
 
+
+        // closing thread
         Thread close = new Thread() {
             @Override
             public void run() {
@@ -109,6 +121,8 @@ public class SMOKER {
         };
 
         consumerThread.start();
+
+        // send by pressing enter
         textField1.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

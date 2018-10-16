@@ -22,9 +22,9 @@ export SMOKER_TRUSTSTORE_PATH="/home/sknot/RH/SMOKER/expoDemoUser1/truststore.jk
 export SMOKER_KEYSTORE_PASSWORD="123456"
 export SMOKER_KEYSTORE_PATH="/home/sknot/RH/SMOKER/expoDemoUser1/user.p12"
 #this topic is is used as publish topic to user1 and subscribe topic for user2
-export SMOKER_TOPIC_USR1USR2="smoker_topic_usr1_2_usr2"
+export SMOKER_TOPIC_USR1USR2="smoker-topic-usr1-2-usr2"
 #this topic is is used as publish topic to user2 and subscribe topic for user1
-export SMOKER_TOPIC_USR2USR1="smoker_topic_usr2_2_usr1"
+export SMOKER_TOPIC_USR2USR1="smoker-topic-usr2-2-usr1"
 export SMOKER_GROUP_ID="my-group-1"
 export SMOKER_RECEIVER="user2"
 export SMOKER_SENDER="user1"

@@ -16,11 +16,13 @@ fi
 
 	#install resources
 	oc apply -f /home/sknot/RH/strimzi/install/cluster-operator
-	sleep 10
 
 	#deploy cluster
 	oc apply -f kafka-ephemeral.yaml
-	sleep 90 # we have to wait to ready kafka
+
+	#create topics
+	oc apply -f kafka-topic-1.yaml
+	oc apply -f kafka-topic-2.yaml
 
 	#create users
 	oc apply -f expoDemoUser1/kafka-user.yaml
