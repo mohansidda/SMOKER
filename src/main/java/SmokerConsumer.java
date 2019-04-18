@@ -36,11 +36,12 @@ public class SmokerConsumer {
         props = SmokerConsumerConfig.createProperties(config);
         consumer = new KafkaConsumer(props);
         commit = !Boolean.parseBoolean(config.getEnableAutoCommit());
+        consumer.subscribe(Collections.singletonList(config.getTopic()));
     }
 
     public String consume() {
         String recieved = "";
-        consumer.subscribe(Collections.singletonList(config.getTopic()));
+
 
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(1000);
