@@ -15,6 +15,8 @@ rm user.crt user.key ca.crt
 bootstrap=`oc get service my-cluster-kafka-external-bootstrap -o=jsonpath='{.status.loadBalancer.ingress[0].ip}{"\n"}'`
 bootstrap="${bootstrap}:9094"
 
+echo $bootstrap
+
 export SMOKER_BOOTSTRAP_SERVERS=${bootstrap}
 echo $SMOKER_BOOTSTRAP_SERVERS
 export SMOKER_TRUSTSTORE_PASSWORD="123456"
